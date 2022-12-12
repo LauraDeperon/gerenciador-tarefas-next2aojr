@@ -1,8 +1,13 @@
+/* eslint-disable @next/next/no-img-element */
 import { NextPage } from "next";
 import { useState } from 'react';
 import { executeRequest } from "../services/api";
 
-export const Login: NextPage = () => {
+type LoginProps = {
+    setToken(s: string): void
+}
+
+export const Login: NextPage<LoginProps> = ({ setToken }) => {
 
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
@@ -24,17 +29,18 @@ export const Login: NextPage = () => {
             }
 
             const result = await executeRequest('login', 'POST', body);
-            if(result && result.data){
+            if (result && result.data) {
                 const obj = result.data;
                 localStorage.setItem('accessToken', obj.token);
                 localStorage.setItem('name', obj.name);
                 localStorage.setItem('email', obj.email);
+                setToken(obj.token);
             }
         } catch (e: any) {
             console.log('Ocorreu erro ao efetuar login:', e);
-            if(e?.response?.data?.error){
+            if (e?.response?.data?.error) {
                 setErrorMsg(e?.response?.data?.error);
-            }else {
+            } else {
                 setErrorMsg('Ocorreu erro ao efetuar login');
             }
         }
