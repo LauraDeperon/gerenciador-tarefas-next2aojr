@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { NextPage } from "next";
+import Link from 'next/link';
 import { useState } from 'react';
 import { executeRequest } from "../services/api";
 
@@ -68,6 +69,10 @@ export const Login: NextPage<LoginProps> = ({ setToken }) => {
                 </div>
 
                 <button onClick={doLogin} disabled={loading}>{loading ? '...Carregando' : 'Login'}</button>
+                <Link href={'/register'}>
+                    <button>Criar Conta</button>
+                </Link>
+
             </div>
         </div>
     );
