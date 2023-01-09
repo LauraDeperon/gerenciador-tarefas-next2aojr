@@ -105,7 +105,7 @@ export const Home: NextPage<HomeProps> = ({ setToken }) => {
                 setPrevisionDateEnd={setPrevisionDateEnd}
                 setStatus={setStatus}
             />
-            <List tasks={list} />
+            <List tasks={list} getFilteredData={getFilteredData} />
             <Footer togglModal={() => setShowModal(!showModal)} />
             <Modal
                 show={showModal}
