@@ -6,6 +6,9 @@ import { UserModel } from '../../models/UserModel';
 import { DefaultMsgResponse } from '../../types/DefaultMsgResponse';
 import { Task } from '../../types/Task';
 import moment from 'moment';
+import setTZ from 'set-tz';
+
+setTZ('America/Boa_Vista')
 
 const handler = async (
   req: NextApiRequest,
